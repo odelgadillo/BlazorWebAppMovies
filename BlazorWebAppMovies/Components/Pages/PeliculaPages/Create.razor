@@ -1,0 +1,59 @@
+@page "/peliculas/create"
+@using Microsoft.EntityFrameworkCore
+@using BlazorWebAppMovies
+@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>Pelicula</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Pelicula" OnValidSubmit="AddPelicula" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Titulo:</label> 
+                <InputText id="titulo" @bind-Value="Pelicula.Titulo" class="form-control" /> 
+                <ValidationMessage For="() => Pelicula.Titulo" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="fechapublicacion" class="form-label">FechaPublicacion:</label> 
+                <InputDate id="fechapublicacion" @bind-Value="Pelicula.FechaPublicacion" class="form-control" /> 
+                <ValidationMessage For="() => Pelicula.FechaPublicacion" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="genero" class="form-label">Genero:</label> 
+                <InputText id="genero" @bind-Value="Pelicula.Genero" class="form-control" /> 
+                <ValidationMessage For="() => Pelicula.Genero" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio:</label> 
+                <InputNumber id="precio" @bind-Value="Pelicula.Precio" class="form-control" /> 
+                <ValidationMessage For="() => Pelicula.Precio" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/peliculas">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Pelicula Pelicula { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddPelicula()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Pelicula.Add(Pelicula);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/peliculas");
+    }
+}

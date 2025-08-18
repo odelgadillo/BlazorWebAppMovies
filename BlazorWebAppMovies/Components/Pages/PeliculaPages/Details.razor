@@ -1,0 +1,52 @@
+@page "/peliculas/details"
+@using Microsoft.EntityFrameworkCore
+@using BlazorWebAppMovies
+@inject IDbContextFactory<BlazorWebAppMovies.Data.BlazorWebAppMoviesContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Pelicula</h2>
+    <hr />
+    @if (pelicula is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Titulo</dt>
+            <dd class="col-sm-10">@pelicula.Titulo</dd>
+            <dt class="col-sm-2">FechaPublicacion</dt>
+            <dd class="col-sm-10">@pelicula.FechaPublicacion</dd>
+            <dt class="col-sm-2">Genero</dt>
+            <dd class="col-sm-10">@pelicula.Genero</dd>
+            <dt class="col-sm-2">Precio</dt>
+            <dd class="col-sm-10">@pelicula.Precio</dd>
+        </dl>
+        <div>
+            <a href="@($"/peliculas/edit?id={pelicula.Id}")">Edit</a> |
+            <a href="@($"/peliculas")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Pelicula? pelicula;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        pelicula = await context.Pelicula.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (pelicula is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}
