@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorWebAppMovies;
 
-public class Movie
+public class Pelicula
 {
     public int Id { get; set; }
     public string? Titulo { get; set; }
