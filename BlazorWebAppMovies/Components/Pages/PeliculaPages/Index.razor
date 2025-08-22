@@ -9,12 +9,18 @@
 <PageTitle>Index</PageTitle>
 
 <h1>Index</h1>
+<div>
+    <form action="/peliculas" data-enhance data-permanent>
+        <input type="search" name="FiltroTitulo" />
+        <input type="submit" value="Search" />
+    </form>
+</div>
 
 <p>
     <a href="peliculas/create">Create New</a>
 </p>
 
-<QuickGrid Class="table" Items="context.Pelicula">
+<QuickGrid Class="table" Items="PeliculasFiltradas">
     <PropertyColumn Property="pelicula => pelicula.Titulo" />
     <PropertyColumn Property="pelicula => pelicula.FechaPublicacion" Title="Lanzamiento" />
     <PropertyColumn Property="pelicula => pelicula.Genero" />
@@ -28,6 +34,13 @@
 </QuickGrid>
 
 @code {
+    [SupplyParameterFromQuery]
+    private string? FiltroTitulo { get; set; }
+
+    private IQueryable<Pelicula> PeliculasFiltradas => context.Pelicula.Where(m => m.Titulo!.Contains(FiltroTitulo ??
+    string.Empty));
+
+
     private BlazorWebAppMoviesContext context = default!;
 
     protected override void OnInitialized()
