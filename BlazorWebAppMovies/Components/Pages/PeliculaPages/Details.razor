@@ -19,12 +19,18 @@
         <dl class="row">
             <dt class="col-sm-2">Titulo</dt>
             <dd class="col-sm-10">@pelicula.Titulo</dd>
+            
             <dt class="col-sm-2">Fecha de Publicación</dt>
             <dd class="col-sm-10">@pelicula.FechaPublicacion</dd>
+            
             <dt class="col-sm-2">Genero</dt>
             <dd class="col-sm-10">@pelicula.Genero</dd>
+            
             <dt class="col-sm-2">Precio</dt>
             <dd class="col-sm-10">@pelicula.Precio</dd>
+
+            <dt class="col-sm-2">Clasificación</dt>
+            <dd class="col-sm-10">@pelicula.Clasificacion</dd>
         </dl>
         <div>
             <a href="@($"/peliculas/edit?id={pelicula.Id}")">Edit</a> |

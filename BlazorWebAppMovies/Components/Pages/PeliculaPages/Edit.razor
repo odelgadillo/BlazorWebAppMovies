@@ -42,6 +42,11 @@ else
                     <InputNumber id="precio" @bind-Value="Pelicula.Precio" class="form-control" />
                     <ValidationMessage For="() => Pelicula.Precio" class="text-danger" />
                 </div>
+                <div class="mb-3">
+                    <label for="clasificacion" class="form-label">Clasificación:</label>
+                    <InputText id="clasificacion" @bind-Value="Pelicula.Clasificacion" class="form-control" />
+                    <ValidationMessage For="() => Pelicula.Clasificacion" class="text-danger" />
+                </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </EditForm>
         </div>

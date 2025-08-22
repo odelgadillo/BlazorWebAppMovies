@@ -12,7 +12,7 @@ public class Pelicula
     public string? Titulo { get; set; }
 
     public DateOnly FechaPublicacion { get; set; }
-    
+
     [Required]
     [StringLength(30)]
     [RegularExpression(@"^[A-Z]+[a-zA-Z()\s-]*$")]
@@ -22,4 +22,9 @@ public class Pelicula
     [DataType(DataType.Currency)]
     [Column(TypeName = "decimal(18,2)")]
     public Decimal Precio { get; set; }
+
+    [Required]
+    [RegularExpression(@"^(G|PG-13|R|NC-17)$")]
+    public string? Clasificacion { get; set; }
+    
 }

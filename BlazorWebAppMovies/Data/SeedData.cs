@@ -22,35 +22,40 @@ public class SeedData
                 Titulo = "Mad Max",
                 FechaPublicacion = new DateOnly(1979, 4, 12),
                 Genero = "Sci-Fi (Cyberpunk)",
-                Precio = 2.51M
+                Precio = 2.51M,
+                Clasificacion = "R"
             },
             new Pelicula
             {
                 Titulo = "The Road Warrior",
                 FechaPublicacion = new DateOnly(1981, 12, 24),
                 Genero = "Sci-Fi (Cyberpunk)",
-                Precio = 2.78M
+                Precio = 2.78M,
+                Clasificacion = "R"
             },
             new Pelicula
             {
                 Titulo = "Mad Max: Beyond Thunderdome",
                 FechaPublicacion = new DateOnly(1985, 7, 10),
                 Genero = "Sci-Fi (Cyberpunk)",
-                Precio = 3.99M
+                Precio = 3.99M,
+                Clasificacion = "PG-13"
             },
             new Pelicula
             {
                 Titulo = "Mad Max: Fury Road",
                 FechaPublicacion = new DateOnly(2015, 5, 15),
                 Genero = "Sci-Fi (Cyberpunk)",
-                Precio = 8.43M
+                Precio = 8.43M,
+                Clasificacion = "R"
             },
             new Pelicula
             {
                 Titulo = "Furiosa: A Mad Max Saga",
                 FechaPublicacion = new DateOnly(2024, 5, 24),
                 Genero = "Sci-Fi (Cyberpunk)",
-                Precio = 13.49M
+                Precio = 13.49M,
+                Clasificacion = "R"
             }
         );
         context.SaveChanges();
